@@ -60,14 +60,13 @@ export class SliderImageController {
   })
   async loadJson(): Promise<void> {
     return new Promise(async (resolve, reject) => {
-      console.log(fs.readdirSync(path.resolve('./src/assets/JSON')));
-      // const content = JSON.parse(fs.readFileSync(path.resolve('assets/JSON/slide.json'), {'encoding': 'utf-8'}));
-      // for (const imgPath of content[0].imagens) {
-      //   const found = await this.sliderImageRepository.find({where: {path: imgPath}});
-      //   if (!found.length) {
-      //     this.sliderImageRepository.create({path: imgPath}).catch(err => reject(err));
-      //   }
-      // }
+      const content = JSON.parse(fs.readFileSync(path.resolve('./src/assets/JSON/slide.json'), {'encoding': 'utf-8'}));
+      for (const imgPath of content[0].imagens) {
+        const found = await this.sliderImageRepository.find({where: {path: imgPath}});
+        if (!found.length) {
+          this.sliderImageRepository.create({path: imgPath}).catch(err => reject(err));
+        }
+      }
       return resolve();
     })
   }
@@ -102,7 +101,7 @@ export class SliderImageController {
       const imgPaths = await this.sliderImageRepository.find(filter || {});
       const imgFiles = [];
       for (const imgPath of imgPaths) {
-        imgFiles.push(fs.readFileSync(path.resolve(`assets/Imagens/Slide/${imgPath.path}`), {encoding: 'base64'}));
+        imgFiles.push(fs.readFileSync(path.resolve(path.resolve(`./src/assets/Imagens/Slide/${imgPath.path}`)), {encoding: 'base64'}));
       }
       return resolve(imgFiles);
     })
