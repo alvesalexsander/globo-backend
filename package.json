@@ -14,6 +14,7 @@
   "scripts": {
     "build": "lb-tsc",
     "build:watch": "lb-tsc --watch",
+    "heroku-postbuild": "cp src/assets dist/assets",
     "lint": "npm run eslint && npm run prettier:check",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
     "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
