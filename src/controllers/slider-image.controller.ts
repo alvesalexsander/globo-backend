@@ -60,7 +60,8 @@ export class SliderImageController {
   })
   async loadJson(): Promise<void> {
     return new Promise(async (resolve, reject) => {
-      console.log(path.resolve('./dist'));
+      console.log(fs.readDir(path.resolve('./')));
+      console.log(path.resolve('./assets'));
       // const content = JSON.parse(fs.readFileSync(path.resolve('assets/JSON/slide.json'), {'encoding': 'utf-8'}));
       // for (const imgPath of content[0].imagens) {
       //   const found = await this.sliderImageRepository.find({where: {path: imgPath}});
