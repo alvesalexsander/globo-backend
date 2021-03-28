@@ -60,7 +60,7 @@ export class SliderImageController {
   })
   async loadJson(): Promise<void> {
     return new Promise(async (resolve, reject) => {
-      const content = JSON.parse(fs.readFileSync(path.resolve('../../assets/JSON/slide.json'), {'encoding': 'utf-8'}));
+      const content = JSON.parse(fs.readFileSync(path.resolve('assets/JSON/slide.json'), {'encoding': 'utf-8'}));
       for (const imgPath of content[0].imagens) {
         const found = await this.sliderImageRepository.find({where: {path: imgPath}});
         if (!found.length) {
@@ -101,7 +101,7 @@ export class SliderImageController {
       const imgPaths = await this.sliderImageRepository.find(filter || {});
       const imgFiles = [];
       for (const imgPath of imgPaths) {
-        imgFiles.push(fs.readFileSync(path.resolve(`../../assets/Imagens/Slide/${imgPath.path}`), {encoding: 'base64'}));
+        imgFiles.push(fs.readFileSync(path.resolve(`assets/Imagens/Slide/${imgPath.path}`), {encoding: 'base64'}));
       }
       return resolve(imgFiles);
     })
